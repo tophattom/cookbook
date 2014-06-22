@@ -4,7 +4,10 @@
   "description": "Simple server for a cookbook",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node index.js",
+    "start-dev": "node index.js",
+    "build": "grunt build"
   },
   "author": "Jaakko Rinta-Filppula",
   "license": "ISC",
@@ -13,5 +16,14 @@
     "express": "~4.4.4",
     "node-uuid": "~1.4.1",
     "body-parser": "~1.4.3"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-targethtml": "~0.2.6",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-sass": "~0.7.3",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-watch": "~0.6.1"
   }
 }

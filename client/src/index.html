@@ -8,10 +8,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js" charset="utf-8"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-resource.min.js" charset="utf-8"></script>
 
+        <!--(if target dev)><!-->
         <script src="js/app.js" charset="utf-8"></script>
         <script src="js/services.js" charset="utf-8"></script>
         <script src="js/controllers.js" charset="utf-8"></script>
         <script src="js/config/config.js" charset="utf-8"></script>
+        <!--<!(endif)-->
+
+        <!--(if target build)>
+        <script src="js/build.js" charset="utf-8"></script>
+        <!(endif)-->
 
         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
         <link rel="stylesheet" href="css/main.css" media="screen">

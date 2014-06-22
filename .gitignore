@@ -47,3 +47,4 @@ config.json
 recipes
 
 client/src/js/config/config.js
+client/build
