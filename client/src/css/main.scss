@@ -27,7 +27,8 @@ h1, h2, h3, p, a, label, legend, td, th, li {
 
 
 #content-wrapper {
-    margin-top: 50px;
+    margin: 50px 0;
+
     padding: 0 20%;
 
     box-sizing: border-box;
@@ -77,4 +78,9 @@ h1, h2, h3, p, a, label, legend, td, th, li {
     .ingredient-amount {
         text-align: right;
     }
+}
+
+
+.pure-button-primary {
+    background-color: $secondaryColor;
 }
