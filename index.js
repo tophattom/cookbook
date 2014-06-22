@@ -9,8 +9,13 @@ var express = require('express'),
 
 var app = express();
 
+var env = process.env.NODE_ENV || 'development';
 
-app.use(express.static(__dirname + '/client/src'));
+if (env === 'production') {
+    app.use(express.static(__dirname + '/client/build'));
+} else {
+    app.use(express.static(__dirname + '/client/src'));
+}
 
 app.use(function(req, res, next) {
     res.set({
