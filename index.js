@@ -101,3 +101,14 @@ app.post('/recipes', function(req, res) {
         res.send(201, newRecipe);
     });
 });
+
+app.delete('/recipes/:recipeId', function(req, res) {
+    fs.unlink('recipes/' + id + '.json', function(err) {
+        if (err) {
+            res.send(404);
+            throw err;
+        }
+
+        res.send(200);
+    });
+});
