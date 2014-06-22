@@ -1,5 +1,5 @@
 {
-  "name": "Cookbook server",
+  "name": "cookbook",
   "version": "0.1.0",
   "description": "Simple server for a cookbook",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "dependencies": {
     "async": "~0.9.0",
     "express": "~4.4.4",
-    "node-uuid": "~1.4.1"
+    "node-uuid": "~1.4.1",
+    "body-parser": "~1.4.3"
   }
 }
