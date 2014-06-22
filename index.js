@@ -1,7 +1,8 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
 
-    r = require('rethinkdb'),
+    uuid = require('node-uuid'),
+    async = require('async'),
 
     fs = require('fs');
 
@@ -35,16 +36,6 @@ fs.readFile('config.json', {encoding: 'utf8'}, function(err, data) {
 
 	var config = JSON.parse(data);
 
-	//Initialize database connection
-	r.connect({host: config.database.host, port: config.database.port}, function(err, conn) {
-		if (err) {
-			throw err;
-		}
-
-		connection = conn;
-		connection.use(config.database.database);
-	});
-
 	//App configuration
 	for (key in config.app) {
 		app.set(key, config.app[key]);
@@ -58,39 +49,55 @@ fs.readFile('config.json', {encoding: 'utf8'}, function(err, data) {
 
 
 app.get('/recipes', function(req, res) {
-    r.table('recipes').run(connection, function(err, cursor) {
+    fs.readdir('recipes/', function(err, files) {
         if (err) {
             throw err;
         }
 
-        cursor.toArray(function(err, result) {
+        var recipes = [];
+
+        async.each(files, function(file, callback) {
+            fs.readFile('recipes/' + file, function(err, data) {
+                if (err) {
+                    callback(err);
+                }
+
+                recipes.push(JSON.parse(data));
+
+                callback(null);
+            });
+        }, function(err) {
             if (err) {
                 throw err;
             }
 
-            res.send(200, result);
-        });
+            res.send(200, recipes);
+        })
     });
 });
 
 app.get('/recipes/:recipeId', function(req, res) {
-    r.table('recipes').get(req.params.recipeId).run(connection, function(err, result) {
+    fs.readFile('recipes/' + req.params.recipeId + '.json', function(err, data) {
         if (err) {
+            res.send(404);
             throw err;
         }
 
-        res.send(200, result);
+        res.send(200, JSON.parse(data));
     });
 });
 
 app.post('/recipes', function(req, res) {
     var newRecipe = req.body;
 
-    r.table('recipes').insert(newRecipe, {returnVals: true}).run(connection, function(err, result) {
+    var id = uuid.v4();
+    newRecipe.id = id;
+
+    fs.writeFile('recipes/' + id + '.json', JSON.stringify(newRecipe), function(err) {
         if (err) {
             throw err;
         }
 
-        res.send(201, result.new_val);
+        res.send(201, newRecipe);
     });
 });
