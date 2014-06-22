@@ -45,3 +45,5 @@ node_modules
 
 config.json
 recipes
+
+client/src/js/config/config.js
