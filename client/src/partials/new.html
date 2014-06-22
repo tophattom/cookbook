@@ -1,0 +1,66 @@
+<h1>Uusi resepti</h1>
+
+<form id="new-recipe" class="pure-form pure-form-stacked" ng-submit="addRecipe()">
+    <label for="new-recipe-name">Nimi</label>
+    <input type="text" name="newRecipeName" ng-model="newRecipe.name">
+
+    <fieldset>
+        <legend>Ainesosat</legend>
+
+         <table class="pure-table pure-table-horizontal">
+             <thead>
+                 <tr>
+                     <th>Määrä</th>
+                     <th>Ainesosa</th>
+                     <th></th>
+                 </tr>
+             </thead>
+
+             <tbody>
+                 <tr ng-repeat="ingredient in newRecipe.ingredients">
+                    <td>
+                        <input type="text" ng-model="ingredient.amount">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="ingredient.name">
+                    </td>
+                    <td>
+                        <a href="" class="pure-button">X</a>
+                    </td>
+                 </tr>
+
+                 <tr class="pure-table-odd">
+                    <td>
+                        <input type="text" ng-model="newIngredient.amount" placeholder="Määrä">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="newIngredient.name" placeholder="Ainesosa">
+                    </td>
+                    <td>
+                        <a href="" class="pure-button" ng-click="addIngredient()">+</a>
+                    </td>
+                 </tr>
+             </tbody>
+         </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Valmistus</legend>
+
+        <ol>
+            <li ng-repeat="step in newRecipe.steps">
+                <textarea rows="4" cols="40">{{step}}</textarea>
+            </li>
+        </ol>
+
+        <fieldset>
+            <legend>Lisää kohta</legend>
+
+            <textarea rows="4" cols="40" ng-model="newStep"></textarea>
+            <a href="" class="pure-button" ng-click="addStep()">+</a>
+        </fieldset>
+
+    </fieldset>
+
+    <button type="submit" class="pure-button pure-button-primary">Lisää resepti</button>
+</form>

@@ -1,0 +1,20 @@
+<h1>{{recipe.name}}</h1>
+
+<table class="pure-table pure-table-horizontal">
+    <tbody>
+        <tr ng-repeat="ingredient in recipe.ingredients">
+            <td>
+                {{ingredient.amount}}
+            </td>
+            <td>
+                {{ingredient.name}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ol>
+    <li ng-repeat="step in recipe.steps">
+        {{step}}
+    </li>
+</ol>

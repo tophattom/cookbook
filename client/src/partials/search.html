@@ -1,0 +1,17 @@
+<div class="pure-g-r">
+    <div class="pure-u-1">
+        <h1>Etsi reseptejä</h1>
+
+        <form id="search-form" class="pure-form">
+            <input type="search" class="pure-input-rounded pure-input-1" ng-model="searchQuery" placeholder="Hakusanat">
+        </form>
+    </div>
+
+    <div class="pure-u-1">
+        <ul>
+            <li ng-repeat="recipe in recipes | filter:searchQuery">
+                <a href="#/recipes/{{recipe.id}}">{{recipe.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
