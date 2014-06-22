@@ -1,0 +1,80 @@
+$primaryColor: #AE7E43;
+$secondaryColor: #2D566F;
+
+$lightColor: #CAB295;
+
+$pageColor: #DCD1C3;
+
+body {
+    background: $pageColor;
+}
+
+h1, h2, h3, p, a, label, legend, td, th, li {
+    font-family: 'Lora', 'serif';
+}
+
+#main-menu {
+    background: $primaryColor;
+
+    a {
+        color: white;
+    }
+
+    li a:hover {
+        background: $secondaryColor;
+    }
+}
+
+
+#content-wrapper {
+    margin-top: 50px;
+    padding: 0 20%;
+
+    box-sizing: border-box;
+}
+
+
+#recipe-search {
+    text-align: center;
+}
+
+#search-results {
+    margin-top: 40px;
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        list-style-type: none;
+    }
+
+    li {
+        border-bottom: 1px solid #AAAAAA;
+
+        a {
+            display: block;
+
+            padding: 10px 20px;
+            margin: 10px 0;
+
+            text-decoration: none;
+            color: black;
+
+            &:hover {
+                background: $lightColor;
+            }
+        }
+    }
+}
+
+#ingredient-table {
+    margin-bottom: 50px;
+
+    td {
+        padding: 10px 20px;
+    }
+
+    .ingredient-amount {
+        text-align: right;
+    }
+}

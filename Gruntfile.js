@@ -26,6 +26,16 @@ module.exports = function(grunt) {
                 files: {
                     'client/build/css/main.css': 'client/src/css/main.scss'
                 }
+            },
+
+            watch: {
+                options: {
+                    style: 'compressed'
+                },
+
+                files: {
+                    'client/src/css/main.css': 'client/src/css/main.scss'
+                }
             }
         },
 
@@ -49,8 +59,8 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            files: ['**/*.scss'],
-            tasks: ['sass']
+            files: ['client/src/css/**/*.scss'],
+            tasks: ['sass:watch']
         }
     });
 
@@ -61,5 +71,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('build', ['clean', 'uglify', 'sass', 'targethtml', 'copy']);
+    grunt.registerTask('build', ['clean', 'uglify', 'sass:build', 'targethtml', 'copy']);
 };

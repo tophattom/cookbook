@@ -47,4 +47,7 @@ config.json
 recipes
 
 client/src/js/config/config.js
+client/src/css/main.css
 client/build
+
+.sass-cache
