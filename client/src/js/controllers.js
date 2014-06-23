@@ -57,8 +57,18 @@ cbControllers.controller('NewCtrl', ['$scope', 'Recipe', function($scope, Recipe
 }]);
 
 
-cbControllers.controller('RecipeCtrl', ['$scope', '$routeParams', 'Recipe', function($scope, $routeParams, Recipe) {
+cbControllers.controller('RecipeCtrl', ['$scope', '$routeParams', '$window', '$location', 'Recipe', function($scope, $routeParams, $window, $location, Recipe) {
     $scope.recipe = Recipe.get({recipeId: $routeParams.recipeId});
+
+    $scope.deleteRecipe = function() {
+        var confirmed = $window.confirm('Haluatko varmasti poistaa reseptin?');
+
+        if (confirmed) {
+            $scope.recipe.$delete().then(function() {
+                $location.path('/');
+            });
+        }
+    };
 }]);
 
 

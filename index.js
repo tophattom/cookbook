@@ -121,7 +121,7 @@ app.put('/recipes/:recipeId', function(req, res) {
 });
 
 app.delete('/recipes/:recipeId', function(req, res) {
-    fs.unlink('recipes/' + id + '.json', function(err) {
+    fs.unlink('recipes/' + req.params.recipeId + '.json', function(err) {
         if (err) {
             res.send(404);
             throw err;
