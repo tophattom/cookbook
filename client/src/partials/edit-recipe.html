@@ -1,0 +1,67 @@
+<h1>Muokkaa reseptiä</h1>
+
+<form id="edit-recipe" class="pure-form pure-form-stacked" ng-submit="updateRecipe()">
+    <label for="edit-recipe-name">Nimi</label>
+    <input type="text" name="newRecipeName" ng-model="recipe.name">
+
+    <fieldset>
+        <legend>Ainesosat</legend>
+
+         <table class="pure-table pure-table-horizontal">
+             <thead>
+                 <tr>
+                     <th>Määrä</th>
+                     <th>Ainesosa</th>
+                     <th></th>
+                 </tr>
+             </thead>
+
+             <tbody>
+                 <tr ng-repeat="ingredient in recipe.ingredients">
+                    <td>
+                        <input type="text" ng-model="ingredient.amount">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="ingredient.name">
+                    </td>
+                    <td>
+                        <a href="" class="pure-button red-button" ng-click="removeIngredient($index)"><i class="fa fa-times"></i></a>
+                    </td>
+                 </tr>
+
+                 <tr class="pure-table-odd">
+                    <td>
+                        <input type="text" ng-model="newIngredient.amount" placeholder="Määrä">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="newIngredient.name" placeholder="Ainesosa">
+                    </td>
+                    <td>
+                        <a href="" class="pure-button green-button" ng-click="addIngredient()"><i class="fa fa-plus"></i></a>
+                    </td>
+                 </tr>
+             </tbody>
+         </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Valmistus</legend>
+
+        <ol>
+            <li ng-repeat="step in recipe.steps">
+                <textarea rows="4" cols="40">{{step}}</textarea>
+                <a href="" class="pure-button red-button" ng-click="removeStep($index)"><i class="fa fa-times"></i></a>
+            </li>
+        </ol>
+
+        <fieldset>
+            <legend>Lisää kohta</legend>
+
+            <textarea rows="4" cols="40" ng-model="newStep"></textarea>
+            <a href="" class="pure-button" ng-click="addStep()"><i class="fa fa-plus"></i></a>
+        </fieldset>
+
+    </fieldset>
+
+    <button type="submit" class="pure-button pure-button-primary">Tallenna</button>
+</form>

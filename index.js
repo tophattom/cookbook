@@ -110,6 +110,16 @@ app.post('/recipes', function(req, res) {
     });
 });
 
+app.put('/recipes/:recipeId', function(req, res) {
+    fs.writeFile('recipes/' + req.params.recipeId + '.json', JSON.stringify(req.body), function(err) {
+        if (err) {
+            throw err;
+        }
+
+        res.send(200, req.body);
+    });
+});
+
 app.delete('/recipes/:recipeId', function(req, res) {
     fs.unlink('recipes/' + id + '.json', function(err) {
         if (err) {

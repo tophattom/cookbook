@@ -53,3 +53,45 @@ cbControllers.controller('NewCtrl', ['$scope', 'Recipe', function($scope, Recipe
 cbControllers.controller('RecipeCtrl', ['$scope', '$routeParams', 'Recipe', function($scope, $routeParams, Recipe) {
     $scope.recipe = Recipe.get({recipeId: $routeParams.recipeId});
 }]);
+
+
+cbControllers.controller('EditCtrl', ['$scope', '$routeParams', '$location', 'Recipe', function($scope, $routeParams, $location, Recipe) {
+    $scope.recipe = Recipe.get({recipeId: $routeParams.recipeId});
+
+    $scope.newIngredient = initIngredient();
+    $scope.newStep = '';
+
+
+    $scope.addIngredient = function() {
+        $scope.recipe.ingredients.push($scope.newIngredient);
+
+        $scope.newIngredient = initIngredient();
+    };
+
+    $scope.removeIngredient = function(index) {
+        $scope.recipe.ingredients.splice(index, 1);
+    };
+
+    $scope.addStep = function() {
+        $scope.recipe.steps.push($scope.newStep);
+        $scope.newStep = new String();
+    };
+
+    $scope.removeStep = function(index) {
+        $scope.recipe.steps.splice(index, 1);
+    };
+
+    $scope.updateRecipe = function() {
+        Recipe.update({}, $scope.recipe, function() {
+            $location.path('/recipes/' + $scope.recipe.id);
+        });
+    };
+
+    function initIngredient() {
+        return {
+            amount: '',
+            name: ''
+        };
+    }
+
+}]);

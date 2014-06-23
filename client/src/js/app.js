@@ -17,6 +17,11 @@ cookbook.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'partials/recipe.html'
         })
 
+        .when('/recipes/:recipeId/edit', {
+            controller: 'EditCtrl',
+            templateUrl: 'partials/edit-recipe.html'
+        })
+
         .otherwise({
             redirectTo: '/'
         });
