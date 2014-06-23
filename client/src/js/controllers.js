@@ -19,11 +19,18 @@ cbControllers.controller('NewCtrl', ['$scope', 'Recipe', function($scope, Recipe
         $scope.newIngredient = initIngredient();
     };
 
+    $scope.removeIngredient = function(index) {
+        $scope.newRecipe.ingredients.splice(index, 1);
+    };
+
     $scope.addStep = function() {
         $scope.newRecipe.steps.push($scope.newStep);
         $scope.newStep = new String();
     };
 
+    $scope.removeStep = function(index) {
+        $scope.newRecipe.steps.splice(index, 1);
+    };
 
     $scope.addRecipe = function() {
         $scope.newRecipe.$save().then(function() {
