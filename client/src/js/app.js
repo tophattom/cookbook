@@ -1,4 +1,4 @@
-var cookbook = angular.module('cookbook', ['ngRoute', 'cbControllers', 'cbConfig']);
+var cookbook = angular.module('cookbook', ['ngRoute', 'cbControllers', 'cbFilters', 'cbConfig']);
 
 cookbook.config(['$routeProvider', function($routeProvider) {
     $routeProvider

@@ -11,6 +11,7 @@ module.exports = function(grunt) {
                         'client/src/js/app.js',
                         'client/src/js/controllers.js',
                         'client/src/js/services.js',
+                        'client/src/js/filters.js',
                         'client/src/js/config/config.js'
                     ]
                 }
