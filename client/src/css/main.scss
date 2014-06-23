@@ -5,6 +5,9 @@ $lightColor: #CAB295;
 
 $pageColor: #DCD1C3;
 
+$red: rgb(190, 55, 55);
+$green: rgb(64, 190, 55);
+
 body {
     background: $pageColor;
 }
@@ -68,6 +71,10 @@ h1, h2, h3, p, a, label, legend, td, th, li {
     }
 }
 
+#recipe-header {
+    margin-bottom: 20px;
+}
+
 #ingredient-table {
     margin-bottom: 50px;
 
@@ -80,7 +87,22 @@ h1, h2, h3, p, a, label, legend, td, th, li {
     }
 }
 
+#recipe-controls {
+    padding-top: 20px;
+    border-top: 1px solid #AAAAAA;
+}
+
 
 .pure-button-primary {
     background-color: $secondaryColor;
+}
+
+.red-button {
+    background: $red;
+    color: white;
+}
+
+.green-button {
+    background: $green;
+    color: white;
 }
