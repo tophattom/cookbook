@@ -3,6 +3,7 @@ var express = require('express'),
 
     uuid = require('node-uuid'),
     async = require('async'),
+    _ = require('lodash'),
 
     fs = require('fs');
 
@@ -128,5 +129,33 @@ app.delete('/recipes/:recipeId', function(req, res) {
         }
 
         res.send(200);
+    });
+});
+
+
+app.get('/categories', function(req, res) {
+    fs.readdir('recipes/', function(err, files) {
+        if (err) {
+            throw err;
+        }
+
+        var categories = [];
+
+        async.each(files, function(file, callback) {
+            fs.readFile('recipes/' + file, function(err, data) {
+                if (err) {
+                    callback(err);
+                }
+
+                var recipe = JSON.parse(data);
+
+                categories = categories.concat(recipe.categories);
+
+                callback(null);
+            });
+        }, function() {
+            categories.sort();
+            res.send(200, _.uniq(categories, true));
+        });
     });
 });

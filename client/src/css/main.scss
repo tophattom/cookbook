@@ -93,6 +93,10 @@ h1, h2, h3, p, a, label, legend, td, th, li {
 }
 
 
+#new-recipe-categories {
+    min-height: 200px;
+}
+
 .pure-button-primary, a.pure-button-primary {
     background-color: $secondaryColor;
 }

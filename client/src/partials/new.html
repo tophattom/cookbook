@@ -63,5 +63,18 @@
 
     </fieldset>
 
+    <fieldset>
+        <legend>Kategoriat</legend>
+
+        <select id="new-recipe-categories" name="newRecipeCategories" ng-options="category for category in categories" ng-model="newRecipe.categories" multiple>
+
+        </select>
+
+        <label for="new-category">Uusi kategoria</label>
+        <input type="text" name="newCategory" ng-model="newCategory">
+
+        <a href="" class="pure-button green-button" ng-click="addCategory()"><i class="fa fa-plus"></i></a>
+    </fieldset>
+
     <button type="submit" class="pure-button pure-button-primary">Lisää resepti</button>
 </form>

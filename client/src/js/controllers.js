@@ -6,11 +6,18 @@ cbControllers.controller('SearchCtrl', ['$scope', 'Recipe', function($scope, Rec
     $scope.searchQuery = '';
 }]);
 
-cbControllers.controller('NewCtrl', ['$scope', 'Recipe', function($scope, Recipe) {
+cbControllers.controller('NewCtrl', ['$scope', '$http', 'Recipe', 'BACKEND_URL', function($scope, $http, Recipe, BACKEND_URL) {
     $scope.newRecipe = initRecipe();
 
     $scope.newIngredient = initIngredient();
     $scope.newStep = '';
+
+    $scope.categories = [];
+    $http.get(BACKEND_URL + 'categories').success(function(data) {
+        $scope.categories = data;
+    });
+
+    $scope.newCategory = '';
 
 
     $scope.addIngredient = function() {
@@ -38,12 +45,22 @@ cbControllers.controller('NewCtrl', ['$scope', 'Recipe', function($scope, Recipe
         });
     };
 
+    $scope.addCategory = function() {
+        $scope.newCategory = $scope.newCategory.toLowerCase();
+        
+        $scope.newRecipe.categories.push($scope.newCategory);
+        $scope.categories.push($scope.newCategory);
+
+        $scope.newCategory = '';
+    };
+
 
     function initRecipe() {
         var newRecipe = new Recipe();
 
         newRecipe.ingredients = [];
         newRecipe.steps = [];
+        newRecipe.categories = [];
 
         return newRecipe;
     }
