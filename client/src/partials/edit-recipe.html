@@ -60,7 +60,20 @@
             <textarea rows="4" cols="40" ng-model="newStep"></textarea>
             <a href="" class="pure-button" ng-click="addStep()"><i class="fa fa-plus"></i></a>
         </fieldset>
+    </fieldset>
 
+    <fieldset>
+        <legend>Kategoriat</legend>
+
+        <label for="recipe-categories">Olemassa olevat kategoriat</label>
+        <select id="recipe-categories" name="editRecipeCategories" ng-options="category for category in categories" ng-model="recipe.categories" multiple>
+
+        </select>
+
+        <label for="new-category">Uusi kategoria</label>
+        <input type="text" name="newCategory" ng-model="newCategory">
+
+        <a href="" class="pure-button green-button" ng-click="addCategory()"><i class="fa fa-plus"></i></a>
     </fieldset>
 
     <button type="submit" class="pure-button pure-button-primary">Tallenna</button>

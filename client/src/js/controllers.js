@@ -47,7 +47,7 @@ cbControllers.controller('NewCtrl', ['$scope', '$http', 'Recipe', 'BACKEND_URL',
 
     $scope.addCategory = function() {
         $scope.newCategory = $scope.newCategory.toLowerCase();
-        
+
         $scope.newRecipe.categories.push($scope.newCategory);
         $scope.categories.push($scope.newCategory);
 
@@ -89,43 +89,62 @@ cbControllers.controller('RecipeCtrl', ['$scope', '$routeParams', '$window', '$l
 }]);
 
 
-cbControllers.controller('EditCtrl', ['$scope', '$routeParams', '$location', 'Recipe', function($scope, $routeParams, $location, Recipe) {
-    $scope.recipe = Recipe.get({recipeId: $routeParams.recipeId});
-
-    $scope.newIngredient = initIngredient();
-    $scope.newStep = '';
-
-
-    $scope.addIngredient = function() {
-        $scope.recipe.ingredients.push($scope.newIngredient);
+cbControllers.controller('EditCtrl', ['$scope', '$routeParams', '$location', '$http', 'Recipe', 'BACKEND_URL',
+    function($scope, $routeParams, $location, $http, Recipe, BACKEND_URL) {
+        $scope.recipe = Recipe.get({recipeId: $routeParams.recipeId});
 
         $scope.newIngredient = initIngredient();
-    };
+        $scope.newStep = '';
 
-    $scope.removeIngredient = function(index) {
-        $scope.recipe.ingredients.splice(index, 1);
-    };
-
-    $scope.addStep = function() {
-        $scope.recipe.steps.push($scope.newStep);
-        $scope.newStep = new String();
-    };
-
-    $scope.removeStep = function(index) {
-        $scope.recipe.steps.splice(index, 1);
-    };
-
-    $scope.updateRecipe = function() {
-        Recipe.update({}, $scope.recipe, function() {
-            $location.path('/recipes/' + $scope.recipe.id);
+        $scope.categories = [];
+        $http.get(BACKEND_URL + 'categories').success(function(data) {
+            $scope.categories = data;
         });
-    };
 
-    function initIngredient() {
-        return {
-            amount: '',
-            name: ''
+        $scope.newCategory = '';
+
+        $scope.addIngredient = function() {
+            $scope.recipe.ingredients.push($scope.newIngredient);
+
+            $scope.newIngredient = initIngredient();
         };
-    }
 
-}]);
+        $scope.removeIngredient = function(index) {
+            $scope.recipe.ingredients.splice(index, 1);
+        };
+
+        $scope.addStep = function() {
+            $scope.recipe.steps.push($scope.newStep);
+            $scope.newStep = new String();
+        };
+
+        $scope.removeStep = function(index) {
+            $scope.recipe.steps.splice(index, 1);
+        };
+
+        $scope.updateRecipe = function() {
+            Recipe.update({}, $scope.recipe, function() {
+                $location.path('/recipes/' + $scope.recipe.id);
+            });
+        };
+
+        $scope.addCategory = function() {
+            if (!$scope.recipe.categories) {
+                $scope.recipe.categories = [];
+            }
+
+            $scope.newCategory = $scope.newCategory.toLowerCase();
+
+            $scope.recipe.categories.push($scope.newCategory);
+            $scope.categories.push($scope.newCategory);
+
+            $scope.newCategory = '';
+        };
+
+        function initIngredient() {
+            return {
+                amount: '',
+                name: ''
+            };
+        }
+    }]);
