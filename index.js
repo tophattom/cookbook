@@ -46,7 +46,7 @@ fs.readFile('config.json', {encoding: 'utf8'}, function(err, data) {
 	var config = JSON.parse(data);
 
 	//App configuration
-	for (key in config.app) {
+	for (var key in config.app) {
 		app.set(key, config.app[key]);
 	}
 
@@ -81,7 +81,7 @@ app.get('/recipes', function(req, res) {
             }
 
             res.send(200, recipes);
-        })
+        });
     });
 });
 
