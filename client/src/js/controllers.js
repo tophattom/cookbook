@@ -32,7 +32,7 @@ cbControllers.controller('NewCtrl', ['$scope', '$http', 'Recipe', 'BACKEND_URL',
 
     $scope.addStep = function() {
         $scope.newRecipe.steps.push($scope.newStep);
-        $scope.newStep = new String();
+        $scope.newStep = '';
     };
 
     $scope.removeStep = function(index) {
@@ -103,9 +103,13 @@ cbControllers.controller('EditCtrl', ['$scope', '$routeParams', '$location', '$h
 
         $scope.newCategory = '';
 
-        $scope.addIngredient = function() {
-            $scope.recipe.ingredients.push($scope.newIngredient);
-
+        $scope.addIngredient = function(index) {
+            if (typeof index !== 'undefined') {
+                $scope.recipe.ingredients.splice(index, 0, $scope.newIngredient);
+            } else {
+                $scope.recipe.ingredients.push($scope.newIngredient);
+            }
+            
             $scope.newIngredient = initIngredient();
         };
 
@@ -115,7 +119,7 @@ cbControllers.controller('EditCtrl', ['$scope', '$routeParams', '$location', '$h
 
         $scope.addStep = function() {
             $scope.recipe.steps.push($scope.newStep);
-            $scope.newStep = new String();
+            $scope.newStep = '';
         };
 
         $scope.removeStep = function(index) {

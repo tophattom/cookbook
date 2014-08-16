@@ -13,6 +13,7 @@
                      <th>Määrä</th>
                      <th>Ainesosa</th>
                      <th></th>
+                     <th></th>
                  </tr>
              </thead>
 
@@ -24,8 +25,14 @@
                     <td>
                         <input type="text" ng-model="ingredient.name">
                     </td>
-                    <td>
+                    <td class="show-on-hover">
                         <a href="" class="pure-button red-button" ng-click="removeIngredient($index)"><i class="fa fa-times"></i></a>
+                    </td>
+                    <td class="show-on-hover">
+                        <a href="" class="pure-button green-button" ng-click="addIngredient($index)">
+                            <i class="fa fa-plus"></i>
+                            <i class="fa fa-arrow-up"></i>
+                        </a>
                     </td>
                  </tr>
 
@@ -38,6 +45,9 @@
                     </td>
                     <td>
                         <a href="" class="pure-button green-button" ng-click="addIngredient()"><i class="fa fa-plus"></i></a>
+                    </td>
+                    <td>
+                        
                     </td>
                  </tr>
              </tbody>
