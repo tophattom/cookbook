@@ -110,3 +110,15 @@ h1, h2, h3, p, a, label, legend, td, th, li {
     background: $green;
     color: white;
 }
+
+tr {
+    .show-on-hover {
+        visibility: hidden;
+    }
+    
+    &:hover {
+        .show-on-hover {
+            visibility: visible;
+        }
+    }
+}
