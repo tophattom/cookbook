@@ -1,7 +1,7 @@
-var cbServices = angular.module('cbServices', ['ngResource', 'cbConfig']);
+var cbServices = angular.module('cbServices', ['ngResource']);
 
-cbServices.factory('Recipe', ['$resource', 'BACKEND_URL', function($resource, BACKEND_URL) {
-    return $resource(BACKEND_URL + 'recipes/:recipeId', {recipeId: '@id'}, {
+cbServices.factory('Recipe', ['$resource', function($resource) {
+    return $resource('/recipes/:recipeId', {recipeId: '@id'}, {
         update: {method: 'PUT'}
     });
 }]);

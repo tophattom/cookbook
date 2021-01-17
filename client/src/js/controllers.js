@@ -6,14 +6,14 @@ cbControllers.controller('SearchCtrl', ['$scope', 'Recipe', function($scope, Rec
     $scope.searchQuery = '';
 }]);
 
-cbControllers.controller('NewCtrl', ['$scope', '$http', 'Recipe', 'BACKEND_URL', function($scope, $http, Recipe, BACKEND_URL) {
+cbControllers.controller('NewCtrl', ['$scope', '$http', 'Recipe', function($scope, $http, Recipe) {
     $scope.newRecipe = initRecipe();
 
     $scope.newIngredient = initIngredient();
     $scope.newStep = '';
 
     $scope.categories = [];
-    $http.get(BACKEND_URL + 'categories').success(function(data) {
+    $http.get('/categories').success(function(data) {
         $scope.categories = data;
     });
 
@@ -89,15 +89,15 @@ cbControllers.controller('RecipeCtrl', ['$scope', '$routeParams', '$window', '$l
 }]);
 
 
-cbControllers.controller('EditCtrl', ['$scope', '$routeParams', '$location', '$http', 'Recipe', 'BACKEND_URL',
-    function($scope, $routeParams, $location, $http, Recipe, BACKEND_URL) {
+cbControllers.controller('EditCtrl', ['$scope', '$routeParams', '$location', '$http', 'Recipe',
+    function($scope, $routeParams, $location, $http, Recipe) {
         $scope.recipe = Recipe.get({recipeId: $routeParams.recipeId});
 
         $scope.newIngredient = initIngredient();
         $scope.newStep = '';
 
         $scope.categories = [];
-        $http.get(BACKEND_URL + 'categories').success(function(data) {
+        $http.get('/categories').success(function(data) {
             $scope.categories = data;
         });
 
@@ -109,7 +109,7 @@ cbControllers.controller('EditCtrl', ['$scope', '$routeParams', '$location', '$h
             } else {
                 $scope.recipe.ingredients.push($scope.newIngredient);
             }
-            
+
             $scope.newIngredient = initIngredient();
         };
 
