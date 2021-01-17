@@ -28,7 +28,7 @@ app.use(function(req, res, next) {
 
 	//Send OK if preflight request
 	if (req.method === 'OPTIONS') {
-		res.send(200);
+		res.status(200);
 	} else {
 		next();
 	}
@@ -80,7 +80,7 @@ app.get('/recipes', function(req, res) {
                 throw err;
             }
 
-            res.send(200, recipes);
+            res.status(200).send(recipes);
         });
     });
 });
@@ -88,11 +88,11 @@ app.get('/recipes', function(req, res) {
 app.get('/recipes/:recipeId', function(req, res) {
     fs.readFile('recipes/' + req.params.recipeId + '.json', function(err, data) {
         if (err) {
-            res.send(404);
+            res.status(404);
             throw err;
         }
 
-        res.send(200, JSON.parse(data));
+        res.status(200).send(JSON.parse(data));
     });
 });
 
@@ -107,7 +107,7 @@ app.post('/recipes', function(req, res) {
             throw err;
         }
 
-        res.send(201, newRecipe);
+        res.status(201).send(newRecipe);
     });
 });
 
@@ -117,18 +117,18 @@ app.put('/recipes/:recipeId', function(req, res) {
             throw err;
         }
 
-        res.send(200, req.body);
+        res.status(200).send(req.body);
     });
 });
 
 app.delete('/recipes/:recipeId', function(req, res) {
     fs.unlink('recipes/' + req.params.recipeId + '.json', function(err) {
         if (err) {
-            res.send(404);
+            res.status(404);
             throw err;
         }
 
-        res.send(200);
+        res.status(200);
     });
 });
 
@@ -155,7 +155,7 @@ app.get('/categories', function(req, res) {
             });
         }, function() {
             categories.sort();
-            res.send(200, _.uniq(categories, true));
+            res.status(200).send(_.uniq(categories, true));
         });
     });
 });
