@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  cookbook:
+    image: cookbook:latest
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 1337:1337
+    volumes:
+      - ./recipes:/app/recipes
