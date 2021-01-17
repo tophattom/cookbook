@@ -19,7 +19,7 @@
         <script src="js/build.js" charset="utf-8"></script>
         <!(endif)-->
 
-        <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
         <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -30,11 +30,15 @@
         <div id="page-wrapper">
             <div id="header">
                 <div id="main-menu" class="pure-menu pure-menu-horizontal pure-menu-open">
-                    <a href="#/" class="pure-menu-heading">Keittokirja</a>
+                    <a href="#/" class="pure-menu-heading pure-menu-link">Keittokirja</a>
 
-                    <ul>
-                        <li><a href="#/"><i class="fa fa-search"></i> Etsi</a></li>
-                        <li><a href="#/new"><i class="fa fa-plus"></i> Uusi resepti</a></li>
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item">
+                            <a class="pure-menu-link" href="#/"><i class="fa fa-search"></i> Etsi</a>
+                        </li>
+                        <li class="pure-menu-item">
+                            <a class="pure-menu-link" href="#/new"><i class="fa fa-plus"></i> Uusi resepti</a>
+                        </li>
                     </ul>
                 </div>
             </div>

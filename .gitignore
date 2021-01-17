@@ -50,4 +50,8 @@ client/src/js/config/config.js
 client/src/css/main.css
 client/build
 
-.sass-cache
+### Sass ###
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
