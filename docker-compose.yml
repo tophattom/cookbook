@@ -4,6 +4,7 @@ services:
   cookbook:
     image: cookbook:latest
     build: .
+    restart: always
     environment:
       NODE_ENV: production
     ports:
