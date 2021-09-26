@@ -8,6 +8,6 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - 1337:1337
+      - 127.0.0.1:1337:1337
     volumes:
       - ./recipes:/app/recipes
